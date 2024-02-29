@@ -1,0 +1,51 @@
+clc
+clear all
+a =input("Enter a");
+b =input("Enter b");
+c =input("Enter c");
+d =input("Enter d");
+omega1 =input("Enter omega a");
+k = (a^2-b^2+c^2+d^2)./2;
+k1 = (a^2+b^2-c^2+d^2)./2;
+theta1=0:40:360;
+A = k-(a*cosd(theta1)*(d-c))-c*d;
+B =-2*a*c*sind(theta1);
+C =k-a*cosd(theta1)*(d+c)+c*d;
+D= k1-a*cosd(theta1)*(d+b)+b*d;
+E =2*a*b*sind(theta1);
+F =k1-a*cosd(theta1)*(d-b)-b*d;
+
+y1 = (-B+sqrt(B.^2-4.*A.*C))./(2.*A);
+y2 = (-B-sqrt(B.^2-4.*A.*C))./(2.*A);
+z1 = (E+sqrt(E.^2-4.*D.*F))./(2.*D);
+z2 = (E-sqrt(E.^2-4.*D.*F))./(2.*D);
+phi = 2*atand(y1);
+phi1 = 2*atand(y2);
+beta = 2*atand(z1);0.02
+0
+beta1 = 2*atand(z2);
+omegab = -(a*omega1*sind(phi-theta1))./(b*sind(phi-beta));
+omegab1 = -(a*omega1*sind(phi1-theta1))./(b*sind(phi1-beta1));
+omegac = -(a*omega1*sind(beta-theta1))./(c*sind(beta-phi));
+omegac1 = -(a*omega1*sind(beta1-theta1))./(c*sind(beta1-phi1));
+velb =omegab*b;
+velb1 =omegab1*b;
+velc =omegac*c;
+velc1 =omegac1*c;
+plot(theta1,phi,theta1,beta,theta1,phi1,theta1,beta1,theta1,omegab,theta1,omegac,theta1,omegab1,theta1,omegac1)
+grid ON
+xlabel("theta in degrees")
+ylabel("Values")
+legend('phi','beta','phi1','beta1','omegab','omegac','omegab1','omegac1','Location','Best')
+disp(phi)
+disp(phi1)
+disp(beta)
+disp(beta1)
+disp(omegab)
+disp(omegab1)
+disp(omegac)
+disp(omegac1)
+disp(velb)
+disp(velb1)
+disp(velc)
+disp(velc1)
